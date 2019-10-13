@@ -12,10 +12,14 @@ class Story extends Component {
                     <p>You're outside of a house party what do you want to do?</p>
                 </div>
                 <div className='page-actions'>
-                    <button onClick={() => this.props.goFunction(StoryA)}>
+                    <button
+                        onClick={() => this.props.goFunction(StoryA)}
+                        className='actions-button'>
                         Wait for your friend before you enter.
                     </button>
-                    <button onClick={() => this.props.goFunction(StoryB)}>
+                    <button
+                        onClick={() => this.props.goFunction(StoryB)}
+                        className='actions-button'>
                         Go in through the front door.
                     </button>
                 </div>
@@ -33,10 +37,14 @@ class StoryA extends Component {
                     <p>You wait 20 minutes and then your friend arrives and you walk up to the front door. The bouncer asks for your names.</p>
                 </div>
                 <div className='page-actions'>
-                    <button onClick={() => this.props.goFunction(StoryAA)}>
+                    <button
+                        onClick={() => this.props.goFunction(StoryAA)}
+                        className='actions-button'>
                         You give him your name.
                     </button>
-                    <button onClick={() => this.props.goFunction(StoryAB)}>
+                    <button
+                        onClick={() => this.props.goFunction(StoryAB)}
+                        className='actions-button'>
                         Your friend says his name.
                     </button>
                 </div>
@@ -54,7 +62,9 @@ class StoryAA extends Component {
                     <p>You give the bouncer your name and he tells you you're not on the list.</p>
                 </div>
                 <div className='page-actions'>
-                    <button onClick={() => this.props.goFunction(StoryAB)}>
+                    <button
+                        onClick={() => this.props.goFunction(StoryAB)}
+                        className='actions-button'>
                         Your friend says his name.
                     </button>
                 </div>
@@ -72,10 +82,14 @@ class StoryAB extends Component {
                     <p>The bouncer says you can go in. As you walk in your friend takes you to the table in the back where there are two punch bowls with what appears to be alcohol.</p>
                 </div>
                 <div className='page-actions'>
-                    <button onClick={() => this.props.goFunction(StoryABA)}>
+                    <button
+                        onClick={() => this.props.goFunction(StoryABA)}
+                        className='actions-button'>
                         You grab a cup from the bowl on the left.
                     </button>
-                    <button onClick={() => this.props.goFunction(StoryABB)}>
+                    <button
+                        onClick={() => this.props.goFunction(StoryABB)}
+                        className='actions-button'>
                         You grab a cup from the bowl on the right.
                     </button>
                 </div>
@@ -93,7 +107,9 @@ class StoryABB extends Component {
                     <p>As soon as you take a sip you spit it out and accidentally spit on someone. It turns out you spit on the owner of the house and he doesn't like getting his new clothes dirty so he kicks you out.</p>
                 </div>
                 <div className='page-actions'>
-                    <button onClick={() => this.props.goFunction(StoryOver)}>
+                    <button
+                        onClick={() => this.props.goFunction(StoryOver)}
+                        className='actions-button'>
                         Better luck next week buddy.
                     </button>
                 </div>
@@ -111,10 +127,14 @@ class StoryABA extends Component {
                     <p>You take a sip and look up and your friend is already gone talking to a girl. You decide to do the same thing. You look around and your eye catches two pretty girls, a blonde and a brunette.</p>
                 </div>
                 <div className='page-actions'>
-                    <button onClick={() => this.props.goFunction(StoryABAA)}>
+                    <button
+                        onClick={() => this.props.goFunction(StoryABAA)}
+                        className='actions-button'>
                         Go over and talk to the blonde.
                     </button>
-                    <button onClick={() => this.props.goFunction(StoryABAB)}>
+                    <button
+                        onClick={() => this.props.goFunction(StoryABAB)}
+                        className='actions-button'>
                         Go over and talk to the brunette.
                     </button>
                 </div>
@@ -132,10 +152,14 @@ class StoryABAB extends Component {
                     <p>The brunette makes eye contact with you and you start walking towards each other. As she gets closer you realize that she's actually just a very feminine looking guy. As you get closer you quickly duck away and make your way out the front door.</p>
                 </div>
                 <div className='page-actions'>
-                    <button onClick={() => this.props.goFunction(StoryOver)}>
+                    <button
+                        onClick={() => this.props.goFunction(StoryOver)}
+                        className='actions-button'>
                         Just decide to go home because you realize if you had more to drink you might've had your first same-sex experience.
                     </button>
-                    <button onClick={() => this.props.goFunction(StoryABABB)}>
+                    <button
+                        onClick={() => this.props.goFunction(StoryABABB)}
+                        className='actions-button'>
                         Get it together and make your way back in.
                     </button>
                 </div>
@@ -153,10 +177,14 @@ class StoryABABB extends Component {
                     <p>You try to re-enter the party but are stopped at the front door by a bouncer. Even through you tell him you were just in there he can't let you back in unless your name is on a list.</p>
                 </div>
                 <div className='page-actions'>
-                    <button onClick={() => this.props.goFunction(StoryABABBA)}>
+                    <button
+                        onClick={() => this.props.goFunction(StoryABABBA)}
+                        className='actions-button'>
                         Call your friend to see if he can come down to let you back into the party.
                     </button>
-                    <button onClick={() => this.props.goFunction(StoryBA)}>
+                    <button
+                        onClick={() => this.props.goFunction(StoryBA)}
+                        className='actions-button'>
                         Try to convince the bouncer to let you back in.
                     </button>
                 </div>
@@ -174,7 +202,9 @@ class StoryABABBA extends Component {
                     <p>As you pull out your phone to call your friend you see a text from your friend that says 'I hit it off with a blonde girl at the party, feel free to leave without me.</p>
                 </div>
                 <div className='page-actions'>
-                    <button onClick={() => this.props.goFunction(StoryOver)}>
+                    <button
+                        onClick={() => this.props.goFunction(StoryOver)}
+                        className='actions-button'>
                         Big oof, better luck next time.
                     </button>
                 </div>
@@ -192,10 +222,12 @@ class StoryABAA extends Component {
                     <p>You make eye contact with the blonde and start walking over towards her. What's the first thing you say to her?</p>
                 </div>
                 <div className='page-actions'>
-                    <button onClick={() => this.props.goFunction(StoryABAAA)}>
+                    <button onClick={() => this.props.goFunction(StoryABAAA)}
+                        className='actions-button'>
                         Pretty fun party am I right.
                     </button>
-                    <button onClick={() => this.props.goFunction(StoryABAAB)}>
+                    <button onClick={() => this.props.goFunction(StoryABAAB)}
+                        className='actions-button'>
                         If you were a library book, I would check you out.
                     </button>
                 </div>
@@ -213,7 +245,9 @@ class StoryABAAB extends Component {
                     <p>She checks you out before saying "Fuck it come with me" and pulls you by your hand upstairs to a bedroom.</p>
                 </div>
                 <div className='page-actions'>
-                    <button onClick={() => this.props.goFunction(StoryOver)}>
+                    <button
+                        onClick={() => this.props.goFunction(StoryOver)}
+                        className='actions-button'>
                         Nice.
                     </button>
                 </div>
@@ -231,7 +265,9 @@ class StoryABAAA extends Component {
                     <p>"Sure Whatever," she says as she turns away from you.</p>
                 </div>
                 <div className='page-actions'>
-                    <button onClick={() => this.props.goFunction(StoryABAB)}>
+                    <button
+                        onClick={() => this.props.goFunction(StoryABAB)}
+                        className='actions-button'>
                         Defeated you try to make your way over to the brunette.
                     </button>
                 </div>
@@ -249,10 +285,14 @@ class StoryB extends Component {
                     <p>You try to enter the party but are stopped at the front door by a bouncer. You tell him your name and looks on the list and says he doesn't see it.</p>
                 </div>
                 <div className='page-actions'>
-                    <button onClick={() => this.props.goFunction(StoryBA)}>
+                    <button
+                        onClick={() => this.props.goFunction(StoryBA)}
+                        className='actions-button'>
                         Try and convince the bouncer to let you in.
                     </button>
-                    <button onClick={() => this.props.goFunction(StoryA)}>
+                    <button
+                        onClick={() => this.props.goFunction(StoryA)}
+                        className='actions-button'>
                         Go back and wait for your friend.
                     </button>
                 </div>
@@ -270,7 +310,9 @@ class StoryBA extends Component {
                     <p>As your about to try and convince the bouncer to let you in someone behind pushes you into the bouncer and he punches you in the face, knocking you out.</p>
                 </div>
                 <div className='page-actions'>
-                    <button onClick={() => this.props.goFunction(StoryOver)}>
+                    <button
+                        onClick={() => this.props.goFunction(StoryOver)}
+                        className='actions-button'>
                         You couldn't even make it into the party.
                     </button>
                 </div>
@@ -285,12 +327,16 @@ class StoryOver extends Component {
         return (
             <div className='page'>
                 <div className='page-header'>
-                    <p>Thanks for playing!</p>
-                    <p>Written by: Ben Lithgow</p>
-                    <p>Developed by: Joel Lithgow</p>
+                    <p>
+                        Thanks for playing! <br></br>
+                        Written by: Ben Lithgow <br></br>
+                        Developed by: Joel Lithgow
+                    </p>
                 </div>
                 <div className='page-actions'>
-                    <button onClick={() => this.props.goFunction(Story)}>
+                    <button
+                        onClick={() => this.props.goFunction(Story)}
+                        className='actions-button'>
                         Start Story.
                     </button>
                 </div>
