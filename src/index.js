@@ -290,8 +290,8 @@ class StoryOver extends Component {
                     <p>Developed by: Joel Lithgow</p>
                 </div>
                 <div className='page-actions'>
-                    <button onClick={() => this.props.goFunction(StoryOver)}>
-                        You couldn't even make it into the party.
+                    <button onClick={() => this.props.goFunction(Story)}>
+                        Start Story.
                     </button>
                 </div>
             </div>
