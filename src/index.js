@@ -3,192 +3,309 @@ import ReactDOM from "react-dom";
 
 import "./styles.css";
 
-class NamePage extends Component {
-  render() {
-    return (
-      <div className="page">
-        <p>
-          Greetings, traveler! What is your name?
-          <br />
-          <input
-            type="text"
-            value={this.props.data.name}
-            onChange={event =>
-              this.props.setStateFunction("name", event.target.value)
-            }
-          />
-        </p>
-        <button onClick={() => this.props.goFunction(StartPage)}>
-          Continue...
-        </button>
-      </div>
-    );
-  }
-}
 
-class StartPage extends Component {
-  render() {
-    return (
-      <div className="page">
-        <p>
-          Welcome, {this.props.data.name}! How would you like to get to your
-          destination?
-        </p>
-        <button onClick={() => this.props.goFunction(TrainPage)}>Train</button>
-        <button onClick={() => this.props.goFunction(ShipPage)}>Ship</button>
-      </div>
-    );
-  }
-}
-
-class TrainPage extends Component {
-  render() {
-    return (
-      <div className="page">
-        <p>
-          Welcome aboard the choo-choo train! Please make your way to your seat.
-          What is the number?
-        </p>
-        <input
-          type="text"
-          value={this.props.data.seat}
-          onChange={event =>
-            this.props.setStateFunction("seat", event.target.value)
-          }
-        />
-        <button onClick={() => this.props.goFunction(TrainSeatPage)}>
-          Give Ticket...
-        </button>
-      </div>
-    );
-  }
-}
-
-class TrainSeatPage extends Component {
-  constructor() {
-    super();
-    this.state = { sheepCounted: 0 };
-  }
-
-  countSheep() {
-    if (this.state.sheepCounted >= 9) {
-      this.props.goFunction(dreamPage);
-    } else {
-      this.setState(state => ({ sheepCounted: state.sheepCounted + 1 }));
+class Story extends Component {
+    render() {
+        return (
+            <div className='page'>
+                <div className='page-header'>
+                    <p>You're outside of a house party what do you want to do?</p>
+                </div>
+                <div className='page-actions'>
+                    <button onClick={() => this.props.goFunction(StoryA)}>
+                        Wait for your friend before you enter.
+                    </button>
+                    <button onClick={() => this.props.goFunction(StoryB)}>
+                        Go in through the front door.
+                    </button>
+                </div>
+            </div>
+        );
     }
-  }
-
-  render() {
-    return (
-      <div className="page">
-        <p>You are now sitting on the train...staring out the window...</p>
-        <p>{this.state.sheepCounted}</p>
-        <button onClick={() => this.countSheep()}>Count Sheep</button>
-      </div>
-    );
-  }
 }
 
-//Weather api
-class dreamPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // weather: this.getWeather(),
-      weather: fetch(
-        "https://api.openweathermap.org/data/2.5/weather?q=san%20francisco&appid=417d2f8384501a69a2860d18e4c21822"
-      )
-        .then(resp => resp.json())
-        .then(function(data) {
-          console.log(data);
-          console.log(data.main.temp);
-          if (data.main.temp > 200) {
-            console.log("supposed to be warm");
-            // this.props.setStateFunction('weather', 'warm');
-            return "warm";
-          } else {
-            // this.props.setStateFunction('weather', 'cold');
-            return "cold";
-          }
-        })
-        .catch(function(error) {
-          console.log("Couldn't fetch api");
-          console.log(this.state.weather);
-        })
-    };
-  }
 
-  getWeather() {
-    let apiUrl =
-      "https://api.openweathermap.org/data/2.5/weather?q=san%20francisco&appid=417d2f8384501a69a2860d18e4c21822";
-    fetch(apiUrl)
-      .then(resp => resp.json())
-      .then(function(data) {
-        console.log(data);
-        console.log(data.main.temp);
-        if (data.main.temp > 200) {
-          console.log("supposed to be warm");
-          this.props.setStateFunction("weather", "warm");
-          // return 'warm';
-        } else {
-          // this.props.setStateFunction('weather', 'cold');
-          return "cold";
-        }
-      })
-      .catch(function(error) {
-        console.log("Couldn't fetch api");
-        console.log(this.state.weather);
-      });
-  }
-
-  render() {
-    return (
-      <p>
-        You look around and realize your alone, and {this.props.data.weather}.
-      </p>
-    );
-  }
+class StoryA extends Component {
+    render() {
+        return (
+            <div className='page'>
+                <div className='page-header'>
+                    <p>You wait 20 minutes and then your friend arrives and you walk up to the front door. The bouncer asks for your names.</p>
+                </div>
+                <div className='page-actions'>
+                    <button onClick={() => this.props.goFunction(StoryAA)}>
+                        You give him your name.
+                    </button>
+                    <button onClick={() => this.props.goFunction(StoryAB)}>
+                        Your friend says his name.
+                    </button>
+                </div>
+            </div>
+        );
+    }
 }
 
-class ShipPage extends Component {
-  constructor() {
-    super();
-    this.state = { seatPicked: "Port" };
-  }
 
-  render() {
-    return (
-      <div className="page">
-        <p>Welcome aboard matie, where would you like to sit?</p>
-        {/* <select value={this.props.data.seat} onChange={this.props.setStateFunction(“seat”, event.target.value)}> */}
-        {/* <select value={this.props.seatPicked} onChange={this.props.setState('seatPicked', this.seatPicked)}> */}
-        <select
-          onChange={event =>
-            this.props.setStateFunction("seatPicked", event.target.value)
-          }
-        >
-          <option value="Port">Seat 12</option>
-          <option value="Bow">Seat 13</option>
-          <option value="Stern">Seat 14</option>
-        </select>
-        <button
-          onClick={() =>
-            this.props.setStateFunction("seatPicked", this.state.seatPicked)
-          }
-        >
-          Sit down
-        </button>
-      </div>
-    );
-  }
+class StoryAA extends Component {
+    render() {
+        return (
+            <div className='page'>
+                <div className='page-header'>
+                    <p>You give the bouncer your name and he tells you you're not on the list.</p>
+                </div>
+                <div className='page-actions'>
+                    <button onClick={() => this.props.goFunction(StoryAB)}>
+                        Your friend says his name.
+                    </button>
+                </div>
+            </div>
+        );
+    }
 }
+
+
+class StoryAB extends Component {
+    render() {
+        return (
+            <div className='page'>
+                <div className='page-header'>
+                    <p>The bouncer says you can go in. As you walk in your friend takes you to the table in the back where there are two punch bowls with what appears to be alcohol.</p>
+                </div>
+                <div className='page-actions'>
+                    <button onClick={() => this.props.goFunction(StoryABA)}>
+                        You grab a cup from the bowl on the left.
+                    </button>
+                    <button onClick={() => this.props.goFunction(StoryABB)}>
+                        You grab a cup from the bowl on the right.
+                    </button>
+                </div>
+            </div>
+        );
+    }
+}
+
+
+class StoryABB extends Component {
+    render() {
+        return (
+            <div className='page'>
+                <div className='page-header'>
+                    <p>As soon as you take a sip you spit it out and accidentally spit on someone. It turns out you spit on the owner of the house and he doesn't like getting his new clothes dirty so he kicks you out.</p>
+                </div>
+                <div className='page-actions'>
+                    <button onClick={() => this.props.goFunction(StoryOver)}>
+                        Better luck next week buddy.
+                    </button>
+                </div>
+            </div>
+        );
+    }
+}
+
+
+class StoryABA extends Component {
+    render() {
+        return (
+            <div className='page'>
+                <div className='page-header'>
+                    <p>You take a sip and look up and your friend is already gone talking to a girl. You decide to do the same thing. You look around and your eye catches two pretty girls, a blonde and a brunette.</p>
+                </div>
+                <div className='page-actions'>
+                    <button onClick={() => this.props.goFunction(StoryABAA)}>
+                        Go over and talk to the blonde.
+                    </button>
+                    <button onClick={() => this.props.goFunction(StoryABAB)}>
+                        Go over and talk to the brunette.
+                    </button>
+                </div>
+            </div>
+        );
+    }
+}
+
+
+class StoryABAB extends Component {
+    render() {
+        return (
+            <div className='page'>
+                <div className='page-header'>
+                    <p>The brunette makes eye contact with you and you start walking towards each other. As she gets closer you realize that she's actually just a very feminine looking guy. As you get closer you quickly duck away and make your way out the front door.</p>
+                </div>
+                <div className='page-actions'>
+                    <button onClick={() => this.props.goFunction(StoryOver)}>
+                        Just decide to go home because you realize if you had more to drink you might've had your first same-sex experience.
+                    </button>
+                    <button onClick={() => this.props.goFunction(StoryABABB)}>
+                        Get it together and make your way back in.
+                    </button>
+                </div>
+            </div>
+        );
+    }
+}
+
+
+class StoryABABB extends Component {
+    render() {
+        return (
+            <div className='page'>
+                <div className='page-header'>
+                    <p>You try to re-enter the party but are stopped at the front door by a bouncer. Even through you tell him you were just in there he can't let you back in unless your name is on a list.</p>
+                </div>
+                <div className='page-actions'>
+                    <button onClick={() => this.props.goFunction(StoryABABBA)}>
+                        Call your friend to see if he can come down to let you back into the party.
+                    </button>
+                    <button onClick={() => this.props.goFunction(StoryBA)}>
+                        Try to convince the bouncer to let you back in.
+                    </button>
+                </div>
+            </div>
+        );
+    }
+}
+
+
+class StoryABABBA extends Component {
+    render() {
+        return (
+            <div className='page'>
+                <div className='page-header'>
+                    <p>As you pull out your phone to call your friend you see a text from your friend that says 'I hit it off with a blonde girl at the party, feel free to leave without me.</p>
+                </div>
+                <div className='page-actions'>
+                    <button onClick={() => this.props.goFunction(StoryOver)}>
+                        Big oof, better luck next time.
+                    </button>
+                </div>
+            </div>
+        );
+    }
+}
+
+
+class StoryABAA extends Component {
+    render() {
+        return (
+            <div className='page'>
+                <div className='page-header'>
+                    <p>You make eye contact with the blonde and start walking over towards her. What's the first thing you say to her?</p>
+                </div>
+                <div className='page-actions'>
+                    <button onClick={() => this.props.goFunction(StoryABAAA)}>
+                        Pretty fun party am I right.
+                    </button>
+                    <button onClick={() => this.props.goFunction(StoryABAAB)}>
+                        If you were a library book, I would check you out.
+                    </button>
+                </div>
+            </div>
+        );
+    }
+}
+
+
+class StoryABAAB extends Component {
+    render() {
+        return (
+            <div className='page'>
+                <div className='page-header'>
+                    <p>She checks you out before saying "Fuck it come with me" and pulls you by your hand upstairs to a bedroom.</p>
+                </div>
+                <div className='page-actions'>
+                    <button onClick={() => this.props.goFunction(StoryOver)}>
+                        Nice.
+                    </button>
+                </div>
+            </div>
+        );
+    }
+}
+
+
+class StoryABAAA extends Component {
+    render() {
+        return (
+            <div className='page'>
+                <div className='page-header'>
+                    <p>"Sure Whatever," she says as she turns away from you.</p>
+                </div>
+                <div className='page-actions'>
+                    <button onClick={() => this.props.goFunction(StoryABAB)}>
+                        Defeated you try to make your way over to the brunette.
+                    </button>
+                </div>
+            </div>
+        )
+    }
+}
+
+
+class StoryB extends Component {
+    render() {
+        return (
+            <div className='page'>
+                <div className='page-header'>
+                    <p>You try to enter the party but are stopped at the front door by a bouncer. You tell him your name and looks on the list and says he doesn't see it.</p>
+                </div>
+                <div className='page-actions'>
+                    <button onClick={() => this.props.goFunction(StoryBA)}>
+                        Try and convince the bouncer to let you in.
+                    </button>
+                    <button onClick={() => this.props.goFunction(StoryA)}>
+                        Go back and wait for your friend.
+                    </button>
+                </div>
+            </div>
+        )
+    }
+}
+
+
+class StoryBA extends Component {
+    render() {
+        return (
+            <div className='page'>
+                <div className='page-header'>
+                    <p>As your about to try and convince the bouncer to let you in someone behind pushes you into the bouncer and he punches you in the face, knocking you out.</p>
+                </div>
+                <div className='page-actions'>
+                    <button onClick={() => this.props.goFunction(StoryOver)}>
+                        You couldn't even make it into the party.
+                    </button>
+                </div>
+            </div>
+        )
+    }
+}
+
+
+class StoryOver extends Component {
+    render() {
+        return (
+            <div className='page'>
+                <div className='page-header'>
+                    <p>Thanks for playing!</p>
+                    <p>Written by: Ben Lithgow</p>
+                    <p>Developed by: Joel Lithgow</p>
+                </div>
+                <div className='page-actions'>
+                    <button onClick={() => this.props.goFunction(StoryOver)}>
+                        You couldn't even make it into the party.
+                    </button>
+                </div>
+            </div>
+        );
+    }
+}
+
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      pageClass: NamePage
+      pageClass: Story
     };
   }
 
